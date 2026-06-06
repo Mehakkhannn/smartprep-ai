@@ -1,12 +1,11 @@
 import streamlit as st
-from google import genai
-from dotenv import load_dotenv
 import os
 import time
+from dotenv import load_dotenv
+from groq import Groq
 
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
-client = genai.Client(api_key=api_key)
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 st.set_page_config(page_title="SmartPrep AI", page_icon="🧠", layout="centered")
 
@@ -34,17 +33,18 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-def ask_gemini(prompt: str) -> str:
+def ask_ai(prompt):
     try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1000
         )
-        return response.text.strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f"REAL_ERROR: {str(e)}"
 
-def generate_questions(job_desc: str):
+def generate_questions(job_desc):
     prompt = f"""
 You are an expert technical interviewer. Based on the job description below, generate exactly 10 interview questions.
 Mix of: 3 technical, 3 behavioral, 2 situational, 2 role-specific.
@@ -55,8 +55,8 @@ Return ONLY a numbered list like:
 Job Description:
 {job_desc}
 """
-    raw = ask_gemini(prompt)
-    if raw.startswith("REAL_ERROR:"):
+    raw = ask_ai(prompt)
+    if "REAL_ERROR" in raw:
         return raw
     questions = []
     for line in raw.split("\n"):
@@ -65,7 +65,7 @@ Job Description:
             questions.append(line.split(". ", 1)[1].strip())
     return questions[:10]
 
-def evaluate_answer(question: str, answer: str, job_desc: str) -> dict:
+def evaluate_answer(question, answer, job_desc):
     prompt = f"""
 You are an interview coach evaluating a candidate's answer.
 
@@ -79,7 +79,7 @@ STRENGTH: [one sentence on what was good]
 IMPROVE: [one specific suggestion]
 IDEAL: [2-3 sentence model answer]
 """
-    raw = ask_gemini(prompt)
+    raw = ask_ai(prompt)
     result = {"score": 5, "strength": "", "improve": "", "ideal": ""}
     for line in raw.split("\n"):
         line = line.strip()
@@ -96,7 +96,7 @@ IDEAL: [2-3 sentence model answer]
             result["ideal"] = line.replace("IDEAL:", "").strip()
     return result
 
-def score_color(score: int) -> str:
+def score_color(score):
     if score >= 8: return "#16a34a"
     elif score >= 5: return "#d97706"
     else: return "#dc2626"
@@ -112,10 +112,10 @@ for key, default in {
     if key not in st.session_state:
         st.session_state[key] = default
 
-# ── HOME ──
+# HOME
 if st.session_state.stage == "home":
     st.markdown("## 🧠 SmartPrep AI")
-    st.markdown("AI-powered mock interview coach — paste a job description and start practicing!")
+    st.markdown("**AI-powered mock interview coach — paste a job description and start practicing!**")
     st.markdown("---")
 
     job_input = st.text_area(
@@ -131,8 +131,8 @@ if st.session_state.stage == "home":
             with st.spinner("🤖 Generating your personalised interview questions..."):
                 questions = generate_questions(job_input)
 
-            if isinstance(questions, str) and questions.startswith("REAL_ERROR:"):
-                st.error(f"❌ API Error: {questions.replace('REAL_ERROR:', '').strip()}")
+            if isinstance(questions, str) and "REAL_ERROR" in questions:
+                st.error(f"❌ API Error: {questions.replace('REAL_ERROR: ', '')}")
             elif isinstance(questions, list) and len(questions) >= 5:
                 st.session_state.job_desc = job_input
                 st.session_state.questions = questions
@@ -144,7 +144,7 @@ if st.session_state.stage == "home":
             else:
                 st.error("Could not generate questions. Try again.")
 
-# ── INTERVIEW ──
+# INTERVIEW
 elif st.session_state.stage == "interview":
     total = len(st.session_state.questions)
     current = st.session_state.current_q
@@ -156,8 +156,12 @@ elif st.session_state.stage == "interview":
     q_text = st.session_state.questions[current]
     st.markdown(f'<div class="question-box">🎯 {q_text}</div>', unsafe_allow_html=True)
 
-    answer = st.text_area("Your answer:", height=160,
-        placeholder="Type your answer here...", key=f"answer_{current}")
+    answer = st.text_area(
+        "Your answer:",
+        height=160,
+        placeholder="Type your answer here...",
+        key=f"answer_{current}"
+    )
 
     col1, col2 = st.columns([3, 1])
     with col1:
@@ -192,7 +196,7 @@ elif st.session_state.stage == "interview":
             st.session_state.current_q += 1
             st.rerun()
 
-# ── REPORT ──
+# REPORT
 elif st.session_state.stage == "report":
     questions = st.session_state.questions
     feedbacks = st.session_state.feedbacks
@@ -208,12 +212,16 @@ elif st.session_state.stage == "report":
     col2.metric("Answered", f"{len([a for a in answers if a != '(No answer given)'])}/{len(questions)}")
     col3.metric("Top Score", f"{max(scores)}/10" if scores else "N/A")
 
-    if avg >= 8: st.info("🟢 Excellent! You're interview-ready.")
-    elif avg >= 6: st.info("🟡 Good! A little more practice and you're set.")
-    else: st.info("🔴 Keep practising! Review feedback below.")
+    if avg >= 8:
+        st.success("🟢 Excellent! You're interview-ready.")
+    elif avg >= 6:
+        st.warning("🟡 Good! A little more practice and you're set.")
+    else:
+        st.error("🔴 Keep practising! Review feedback below.")
 
     st.markdown("---")
     st.markdown("### Detailed Breakdown")
+
     for i, (q, a, f) in enumerate(zip(questions, answers, feedbacks)):
         with st.expander(f"Q{i+1}: {q[:70]}... — Score: {f['score']}/10"):
             st.markdown(f"**Your answer:** {a}")
@@ -225,10 +233,15 @@ elif st.session_state.stage == "report":
     for i, (q, a, f) in enumerate(zip(questions, answers, feedbacks)):
         report_text += f"Q{i+1}: {q}\nAnswer: {a}\nScore: {f['score']}/10\nStrength: {f['strength']}\nImprove: {f['improve']}\nIdeal: {f['ideal']}\n\n"
 
-    st.download_button("📥 Download Report", data=report_text,
-        file_name="smartprep_report.txt", mime="text/plain", use_container_width=True)
+    st.download_button(
+        "📥 Download Report",
+        data=report_text,
+        file_name="smartprep_report.txt",
+        mime="text/plain",
+        use_container_width=True
+    )
 
     if st.button("🔄 Start New Interview", use_container_width=True):
-        for key in ["stage","job_desc","questions","current_q","answers","feedbacks"]:
-            st.session_state[key] = "home" if key=="stage" else [] if isinstance(st.session_state[key],list) else "" if key!="current_q" else 0
+        for key in ["stage", "job_desc", "questions", "current_q", "answers", "feedbacks"]:
+            st.session_state[key] = "home" if key == "stage" else [] if isinstance(st.session_state[key], list) else "" if key != "current_q" else 0
         st.rerun()
