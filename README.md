@@ -1,33 +1,68 @@
-# 🧠 SmartPrep AI — Mock Interview Coach
+<div align="center">
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=7F77DD&center=true&vCenter=true&width=500&lines=AI-Powered+Mock+Interview+Coach;Paste+JD+%E2%86%92+Practice+%E2%86%92+Get+Feedback;Built+with+Gemini+%2B+Streamlit+%F0%9F%9A%80" alt="Typing SVG" />
-</p>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=32&pause=1000&color=7F77DD&center=true&vCenter=true&width=600&lines=🧠+SmartPrep+AI;Your+AI+Interview+Coach;Practice+Smarter.+Get+Hired+Faster." alt="Typing SVG" />
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<p>
+  <img src="https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Gemini%20API-4285F4?style=for-the-badge&logo=google&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Status-Live-22c55e?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Groq%20API-F55036?style=for-the-badge&logo=groq&logoColor=white"/>
+  <img src="https://img.shields.io/badge/LLaMA%203.1-412991?style=for-the-badge&logo=meta&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Status-Live%20🟢-22c55e?style=for-the-badge"/>
 </p>
 
+<p>
+  <a href="https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app">
+    <img src="https://img.shields.io/badge/🚀%20Try%20Live%20App-Click%20Here-FF4B4B?style=for-the-badge&logo=streamlit" alt="Live App"/>
+  </a>
+</p>
+
+> **Paste any job description → Get AI-generated interview questions → Answer them → Get instant feedback + score**
+
+</div>
+
 ---
 
-## 🎯 What is SmartPrep AI?
+## ✨ What is SmartPrep AI?
 
-SmartPrep AI is a fully AI-powered mock interview coach. Paste any job description, answer AI-generated questions, and get instant feedback with scores — just like a real interview but without the anxiety.
+SmartPrep AI is a fully AI-powered mock interview coach that helps job seekers practice smarter. Just paste any job description from LinkedIn, Naukri, or any job portal — and the AI generates personalised interview questions, evaluates your answers in real time, and gives you a detailed performance report.
 
-**Built this because I was job hunting and wanted smarter interview practice. 😄**
+**Built this because I was job hunting myself and wanted smarter interview practice. 😄**
 
 ---
 
-## ✨ Features
+## 🎯 Features
 
-- 🎯 **Custom questions** — AI reads the JD and generates 10 role-specific questions
-- 🤖 **Instant feedback** — Score, strengths, improvement tips, and ideal answer for every response
-- 📊 **Performance report** — Full session breakdown with overall score
-- 📥 **Downloadable report** — Save your results as a text file
-- 🔄 **Unlimited sessions** — Practice as many roles as you want, for free
+| Feature | Description |
+|---|---|
+| 🎯 **Custom Questions** | AI reads the JD and generates 10 role-specific questions (technical + behavioral + situational) |
+| ⚡ **Instant Feedback** | Every answer gets a score (1-10), strength analysis, improvement tip, and ideal answer |
+| 📊 **Performance Report** | Full session breakdown with overall score and detailed per-question analysis |
+| 📥 **Download Report** | Save your results as a text file to track progress over time |
+| 🔄 **Unlimited Practice** | Practice as many roles as you want — completely free |
+
+---
+
+## 🚀 Try It Live
+
+👉 **[https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app](https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app)**
+
+No installation needed — just open and start practicing! 🎉
+
+---
+
+## 📸 How It Works
+
+```
+Step 1 — Paste any Job Description
+         ↓
+Step 2 — AI generates 10 custom interview questions
+         ↓
+Step 3 — Answer each question (or skip)
+         ↓
+Step 4 — Get instant AI feedback + score for every answer
+         ↓
+Step 5 — Download your full performance report
+```
 
 ---
 
@@ -35,14 +70,16 @@ SmartPrep AI is a fully AI-powered mock interview coach. Paste any job descripti
 
 | Tool | Purpose |
 |---|---|
-| Python | Core language |
-| Streamlit | Web UI |
-| Google Gemini API | AI question generation + answer evaluation |
-| python-dotenv | Secure API key management |
+| **Python 3.12** | Core language |
+| **Streamlit** | Web UI and deployment |
+| **Groq API** | Ultra-fast AI inference |
+| **LLaMA 3.1 (8B)** | AI model for question generation and answer evaluation |
+| **python-dotenv** | Secure API key management |
+| **Git + GitHub** | Version control |
 
 ---
 
-## 🚀 Run Locally
+## 💻 Run Locally
 
 **1. Clone the repository**
 ```bash
@@ -59,9 +96,9 @@ pip install -r requirements.txt
 
 Create a `.env` file in the root folder:
 ```
-GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
-Get your free key at [aistudio.google.com](https://aistudio.google.com)
+Get your free key at [console.groq.com](https://console.groq.com) — no credit card needed!
 
 **4. Run the app**
 ```bash
@@ -72,46 +109,67 @@ Open `http://localhost:8501` in your browser 🎉
 
 ---
 
-## 📸 How It Works
+## 📁 Project Structure
 
 ```
-Paste Job Description  →  AI generates 10 questions
-        ↓
-  Answer each question  →  AI scores + gives feedback
-        ↓
-  Full performance report  →  Download & improve
+smartprep-ai/
+├── app.py              # Main Streamlit application
+├── requirements.txt    # Python dependencies
+├── .env                # API keys (never pushed to GitHub)
+├── .gitignore          # Git ignore rules
+└── README.md           # Project documentation
 ```
 
 ---
 
-## 🌐 Deploy for Free (Streamlit Cloud)
+## 🌐 Deploy Your Own (Free)
 
-1. Push this repo to GitHub
+1. Fork this repository
 2. Go to [share.streamlit.io](https://share.streamlit.io)
 3. Connect your GitHub → select this repo → set `app.py` as main file
-4. Add `GEMINI_API_KEY` in the Secrets section
-5. Click Deploy — your app goes live with a public URL!
+4. Add `GROQ_API_KEY = "your_key"` in the Secrets section
+5. Click Deploy — live in 2 minutes! 🚀
 
 ---
 
-## 📚 What I Learned
+## 📚 What I Learned Building This
 
-- Prompt engineering for structured AI outputs
-- Google Gemini API integration
-- Building stateful multi-screen Streamlit apps
-- Secure API key management with `.env`
-- Deploying Python apps to the cloud
-
----
-
-## 🤝 Connect
-
-Made with 💜 by **Mehak Khan**
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehak-khan-611a40284)
-[![GitHub](https://img.shields.io/badge/GitHub-Mehakkhannn-181717?style=flat&logo=github)](https://github.com/Mehakkhannn)
+- ✅ Prompt engineering for structured AI outputs
+- ✅ Groq API integration with LLaMA 3.1
+- ✅ Building stateful multi-screen Streamlit apps
+- ✅ Secure API key management with `.env`
+- ✅ Deploying Python apps to Streamlit Cloud
+- ✅ Debugging real API errors and version conflicts
 
 ---
 
-> ⭐ Star this repo if it helped you — it means a lot!
-> [![Live App](https://img.shields.io/badge/Live%20App-Click%20Here-FF4B4B?style=for-the-badge&logo=streamlit)](https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app)
+## 🗺️ Roadmap
+
+- [ ] Add voice input for answers (speech-to-text)
+- [ ] Resume upload + JD match scoring
+- [ ] Save session history across visits
+- [ ] Add difficulty levels (fresher / experienced)
+- [ ] Support multiple languages
+
+---
+
+## 🤝 Connect With Me
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mehak%20Khan-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehak-khan-611a40284)
+[![GitHub](https://img.shields.io/badge/GitHub-Mehakkhannn-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mehakkhannn)
+
+</div>
+
+---
+
+<div align="center">
+
+⭐ **Star this repo if it helped you — it means a lot!**
+
+*Made with 💜 by Mehak Khan — 2025 Fresher building real things*
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=7f77dd&height=80&section=footer" />
+
+</div>
