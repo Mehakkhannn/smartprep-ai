@@ -114,3 +114,4 @@ Made with 💜 by **Mehak Khan**
 ---
 
 > ⭐ Star this repo if it helped you — it means a lot!
+> [![Live App](https://img.shields.io/badge/Live%20App-Click%20Here-FF4B4B?style=for-the-badge&logo=streamlit)](https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app)
