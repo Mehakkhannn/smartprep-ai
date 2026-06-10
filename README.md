@@ -5,14 +5,14 @@
 <p>
   <img src="https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Groq%20API-F55036?style=for-the-badge&logo=groq&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Groq%20API-F55036?style=for-the-badge&logoColor=white"/>
   <img src="https://img.shields.io/badge/LLaMA%203.1-412991?style=for-the-badge&logo=meta&logoColor=white"/>
   <img src="https://img.shields.io/badge/Status-Live%20🟢-22c55e?style=for-the-badge"/>
 </p>
 
 <p>
-  <a href="https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app">
-    <img src="https://img.shields.io/badge/🚀%20Try%20Live%20App-Click%20Here-FF4B4B?style=for-the-badge&logo=streamlit" alt="Live App"/>
+  <a href="https://huggingface.co/spaces/Mehak025K/smartprep-ai">
+    <img src="https://img.shields.io/badge/🤗%20Live%20on%20Hugging%20Face-Click%20Here-FFD21E?style=for-the-badge" alt="Live App"/>
   </a>
 </p>
 
@@ -35,7 +35,7 @@ SmartPrep AI is a fully AI-powered mock interview coach that helps job seekers p
 | Feature | Description |
 |---|---|
 | 🎯 **Custom Questions** | AI reads the JD and generates 10 role-specific questions (technical + behavioral + situational) |
-| ⚡ **Instant Feedback** | Every answer gets a score (1-10), strength analysis, improvement tip, and ideal answer |
+| ⚡ **Instant Feedback** | Every answer gets a score out of 10, strength analysis, improvement tip and ideal answer |
 | 📊 **Performance Report** | Full session breakdown with overall score and detailed per-question analysis |
 | 📥 **Download Report** | Save your results as a text file to track progress over time |
 | 🔄 **Unlimited Practice** | Practice as many roles as you want — completely free |
@@ -44,7 +44,7 @@ SmartPrep AI is a fully AI-powered mock interview coach that helps job seekers p
 
 ## 🚀 Try It Live
 
-👉 **[https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app](https://smartprep-ai-fhdrqh5oq3bfgbieyihkz3.streamlit.app)**
+👉 **[huggingface.co/spaces/Mehak025K/smartprep-ai](https://huggingface.co/spaces/Mehak025K/smartprep-ai)**
 
 No installation needed — just open and start practicing! 🎉
 
@@ -74,6 +74,7 @@ Step 5 — Download your full performance report
 | **Streamlit** | Web UI and deployment |
 | **Groq API** | Ultra-fast AI inference |
 | **LLaMA 3.1 (8B)** | AI model for question generation and answer evaluation |
+| **Hugging Face Spaces** | Free cloud deployment |
 | **python-dotenv** | Secure API key management |
 | **Git + GitHub** | Version control |
 
@@ -125,10 +126,10 @@ smartprep-ai/
 ## 🌐 Deploy Your Own (Free)
 
 1. Fork this repository
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub → select this repo → set `app.py` as main file
-4. Add `GROQ_API_KEY = "your_key"` in the Secrets section
-5. Click Deploy — live in 2 minutes! 🚀
+2. Go to [huggingface.co/spaces](https://huggingface.co/spaces)
+3. Create new Space → select Streamlit → upload `app.py` and `requirements.txt`
+4. Add `GROQ_API_KEY` in Settings → Variables and secrets
+5. Your app goes live in 2 minutes! 🚀
 
 ---
 
@@ -138,8 +139,8 @@ smartprep-ai/
 - ✅ Groq API integration with LLaMA 3.1
 - ✅ Building stateful multi-screen Streamlit apps
 - ✅ Secure API key management with `.env`
-- ✅ Deploying Python apps to Streamlit Cloud
 - ✅ Debugging real API errors and version conflicts
+- ✅ Deploying Python apps on Hugging Face Spaces
 
 ---
 
@@ -159,6 +160,7 @@ smartprep-ai/
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mehak%20Khan-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mehak-khan-611a40284)
 [![GitHub](https://img.shields.io/badge/GitHub-Mehakkhannn-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mehakkhannn)
+[![HuggingFace](https://img.shields.io/badge/Hugging%20Face-Mehak025K-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/Mehak025K)
 
 </div>
 
